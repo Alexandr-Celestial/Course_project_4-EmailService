@@ -1,0 +1,70 @@
+{% extends 'base_content.html' %}
+
+{% block content  %}
+{% load split_fullname %}
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="card-action-title mb-0">Получатели ({{ object_list|length }})</h5>
+        <b class="btn btn-primary cursor-pointer" id="btn_create_recipient">Добавить получателя</b>
+    </div>
+<div class="card-body">
+    <div class="table-responsive text-nowrap">
+        <ul class="list-unstyled mb-0">
+            {% for recipient in object_list %}
+            <li class="mb-4">
+                <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar avatar-sm me-3">
+                            <span class="avatar-initial rounded-circle bg-label-success">{{ recipient.full_name|spl_fn }}</span>
+                        </div>
+                        <div class="me-2">
+                            <h6 class="mb-0">{{ recipient.full_name }}</h6>
+                            <small>{{ recipient.email }}</small>
+                        </div>
+                    </div>
+                    {% if perms.recipient.can_update_recipient or recipient.owner.id == user.pk %}
+                    <div class="ms-auto">
+                        <a class="btn btn-outline-danger btn-icon btn_delete_recipient" id="{{ recipient.pk }}"><i class="icon-base bx bx-trash icon-md"></i></a>
+                    </div>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+<script>
+
+    $(".btn_delete_recipient").click(function(){
+        let id_r = $(this).attr("id")
+        $.ajax({
+            url: location.origin + "/delete_recipient/" + id_r,
+            method: 'get',
+            dataType: 'html',
+            success: function(data){
+                $('#modal-cont').html(data)
+                $('#modal-mail').modal('show')
+            },
+            error: function (jqXHR, exception) {
+                alert('Uncaught Error. ' + jqXHR.responseText);
+            }
+        });
+    })
+
+    $("#btn_create_recipient").click(function(){
+        $.ajax({
+            url: location.origin + "{% url 'recipients:create_recipient' %}",
+            method: 'get',
+            dataType: 'html',
+            success: function(data){
+                $('#modal-cont').html(data)
+                $('#modal-mail').modal('show')
+            },
+            error: function (jqXHR, exception) {
+                alert('Uncaught Error. ' + jqXHR.responseText);
+            }
+        });
+    })
+</script>
+{% endblock content  %}
