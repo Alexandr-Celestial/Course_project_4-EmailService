@@ -76,6 +76,13 @@ class UserListView(ListView):
     model = User
     template_name = "users_services.html"
 
+    def get_queryset(self):
+        user = self.request.user
+        # user.groups.filter(name='Managers').exists()
+        if user.is_superuser or user.has_perm("user.view_user"):
+            return User.objects.all()
+        return User.objects.filter(owner=user.pk)
+
 def block_user(request: HttpRequest, pk):
     user: User = get_object_or_404(User, id=pk)
     if not user: return PermissionDenied

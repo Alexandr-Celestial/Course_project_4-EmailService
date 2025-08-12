@@ -14,11 +14,9 @@ class MessageListView(LoginRequiredMixin, ListView):
     model = Message
     template_name = "message.html"
 
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     if user.is_superuser or user.has_perm("message.can_all_view_message"):
-    #         return Message.objects.all()
-    #     return Message.objects.filter(owner=user.pk)
+    def get_queryset(self):
+        user = self.request.user
+        return Message.objects.filter(owner=user.pk)
 
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):
@@ -28,7 +26,7 @@ class MessageDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         user = self.request.user
-        if user.is_superuser or user.has_perm("message.can_delete_message"):
+        if user.is_superuser or user.has_perm("message.delete_message"):
             return super().delete(request, *args, **kwargs)
         raise PermissionDenied
 
@@ -44,7 +42,7 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if (
             user.is_superuser
-            or user.has_perm("message.can_update_message")
+            or user.has_perm("message.change_message")
             or message.owner == self.request.user
         ):
             message.save()
@@ -61,7 +59,7 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         message = form.save(commit=False)
         user = self.request.user
-        if user.is_superuser or user.has_perm("message.can_create_message"):
+        if user.has_perm("message.add_message"):
             message.owner = self.request.user
             message.save()
             return super().form_valid(form)

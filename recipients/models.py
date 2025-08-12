@@ -15,9 +15,4 @@ class Recipient(models.Model):
     class Meta:
         verbose_name = "Получатель"
         verbose_name_plural = "Получатели"
-        permissions = [
-            ("can_all_view_recipients", "Просмотр всех получателей"),
-            ("can_delete_recipient", "Удаление получателя"),
-            # ('can_update_recipient', 'Изменение получателя'),
-            ("can_create_recipient", "Создание получателя"),
-        ]
+

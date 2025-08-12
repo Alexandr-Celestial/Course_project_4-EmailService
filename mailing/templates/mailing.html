@@ -13,7 +13,7 @@
             <tr>
                 <th>№ Рассылки</th>
                 <th>Тема</th>
-                <th>Сообщение</th>
+<!--                <th>Сообщение</th>-->
                 <th>Получатели</th>
                 <th>Статус</th>
                 <th>Действия</th>
@@ -26,9 +26,9 @@
                     {{ mailing.pk }}
                 </td>
                 <td>{{ mailing.message.theme }}</td>
-                <td>
-                    {{ mailing.message.body }}
-                </td>
+<!--                <td>-->
+<!--                    {{ mailing.message.body }}-->
+<!--                </td>-->
                 <td>
                     {{ mailing.recipients.all|length }}
                 </td>
@@ -46,11 +46,15 @@
                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu">
-                            {% if perms.mailing.can_update_mailing or mailing.owner.id == user.pk %}
+                            {% if perms.mailing.add_mailing or mailing.owner.id == user.pk %}
+                            <a class="dropdown-item cursor-pointer" href="{% url 'mailing:sending_mailing' mailing.pk %}"><i
+                                    class="icon-base bx bx-trash me-1"></i> Отправить</a>
+                            {% endif %}
+                            {% if perms.mailing.change_mailing or mailing.owner.id == user.pk %}
                             <a class="dropdown-item btn_update_mailing cursor-pointer" id_mailing="{{ mailing.pk }}"><i
                                     class="icon-base bx bx-edit-alt me-1"></i> Редактировать</a>
                             {% endif %}
-                            {% if perms.mailing.can_delete_mailing or mailing.owner.id == user.pk %}
+                            {% if perms.mailing.delete_mailing or mailing.owner.id == user.pk %}
                             <a class="dropdown-item btn_delete_mailing cursor-pointer" id_mailing="{{ mailing.pk }}"><i
                                     class="icon-base bx bx-trash me-1"></i> Удалить</a>
                             {% endif %}
