@@ -22,7 +22,7 @@
                             <small>{{ recipient.email }}</small>
                         </div>
                     </div>
-                    {% if perms.recipient.can_update_recipient or recipient.owner.id == user.pk %}
+                    {% if perms.recipient.delete_recipient or recipient.owner.id == user.pk %}
                     <div class="ms-auto">
                         <a class="btn btn-outline-danger btn-icon btn_delete_recipient" id="{{ recipient.pk }}"><i class="icon-base bx bx-trash icon-md"></i></a>
                     </div>

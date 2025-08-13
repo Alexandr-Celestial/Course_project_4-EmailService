@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
@@ -16,12 +17,12 @@ class MailingListView(LoginRequiredMixin, ListView):
     model = Mailing
     template_name = "mailing.html"
 
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     # user.groups.filter(name='Managers').exists()
-    #     if user.is_superuser or user.has_perm("mailing.can_all_view_mailing"):
-    #         return Mailing.objects.all()
-    #     return Mailing.objects.filter(owner=user.pk)
+    def get_queryset(self):
+        user = self.request.user
+        # user.groups.filter(name='Managers').exists()
+        if user.is_superuser or user.has_perm("mailing.view_mailing"):
+            return Mailing.objects.all()
+        return Mailing.objects.filter(owner=user.pk)
 
 
 class MailingCreateView(LoginRequiredMixin, CreateView):
@@ -33,11 +34,10 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         mailing: Mailing = form.save(commit=False)
         user = self.request.user
-        if user.is_superuser or user.has_perm("mailing.can_create_mailing"):
+        if user.is_superuser or user.has_perm("mailing.add_mailing"):
             mailing.owner = self.request.user
             mailing.save()
             form.save_m2m()
-            start_sending_message(mailing)
             return super().form_valid(form)
         raise PermissionDenied
 
@@ -53,7 +53,7 @@ class MailingDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         user = self.request.user
-        if user.is_superuser or user.has_perm("mailing.can_delete_mailing"):
+        if user.is_superuser or user.has_perm("mailing.delete_mailing"):
             return super().delete(request, *args, **kwargs)
         raise PermissionDenied
 
@@ -70,9 +70,14 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
 
         if (
             user.is_superuser
-            or user.has_perm("mailing.can_update_mailing")
+            or user.has_perm("mailing.change_mailing")
             or mailing.owner == self.request.user
         ):
             mailing.save()
             return super().form_valid(form)
         raise PermissionDenied
+
+def sending_mailing(request, pk):
+    mailing: Mailing = get_object_or_404(Mailing, pk=pk)
+    start_sending_message(mailing)
+    return redirect("mailing:mailing")

@@ -1,0 +1,765 @@
+[
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add Пользователь",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change Пользователь",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete Пользователь",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view Пользователь",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add recipient",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "add_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change recipient",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "change_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete recipient",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "delete_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view recipient",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "view_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add mailing",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "add_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change mailing",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "change_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete mailing",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "delete_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view mailing",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "view_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add recipient mailing",
+        "content_type": [
+            "mailing",
+            "recipientmailing"
+        ],
+        "codename": "add_recipientmailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change recipient mailing",
+        "content_type": [
+            "mailing",
+            "recipientmailing"
+        ],
+        "codename": "change_recipientmailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete recipient mailing",
+        "content_type": [
+            "mailing",
+            "recipientmailing"
+        ],
+        "codename": "delete_recipientmailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view recipient mailing",
+        "content_type": [
+            "mailing",
+            "recipientmailing"
+        ],
+        "codename": "view_recipientmailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add message",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "add_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change message",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "change_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete message",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "delete_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view message",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "view_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Удаление получателя",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "can_delete_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Изменение получателя",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "can_update_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Создание получателя",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "can_create_recipient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Удаление рассылки",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "can_delete_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Изменение рассылки",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "can_update_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Создание рассылки",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "can_create_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Удаление сообщения",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "can_delete_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Изменение сообщения",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "can_update_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Создание сообщения",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "can_create_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Просмотр всех получателей",
+        "content_type": [
+            "recipients",
+            "recipient"
+        ],
+        "codename": "can_all_view_recipients"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Просмотр всех рассылок",
+        "content_type": [
+            "mailing",
+            "mailing"
+        ],
+        "codename": "can_all_view_mailing"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Просмотр всех сообщений",
+        "content_type": [
+            "message",
+            "message"
+        ],
+        "codename": "can_all_view_message"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Просмотр всех пользователей",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "can_all_view_users"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Блокировка пользователя",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "can_block_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Отключение рассылки",
+        "content_type": [
+            "user",
+            "user"
+        ],
+        "codename": "can_off_mailing"
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "Managers",
+        "permissions": [
+            [
+                "view_mailing",
+                "mailing",
+                "mailing"
+            ],
+            [
+                "view_recipientmailing",
+                "mailing",
+                "recipientmailing"
+            ],
+            [
+                "can_block_user",
+                "user",
+                "user"
+            ],
+            [
+                "can_off_mailing",
+                "user",
+                "user"
+            ],
+            [
+                "view_user",
+                "user",
+                "user"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+        "name": "Users",
+        "permissions": [
+            [
+                "add_mailing",
+                "mailing",
+                "mailing"
+            ],
+            [
+                "change_mailing",
+                "mailing",
+                "mailing"
+            ],
+            [
+                "delete_mailing",
+                "mailing",
+                "mailing"
+            ],
+            [
+                "view_mailing",
+                "mailing",
+                "mailing"
+            ],
+            [
+                "add_recipientmailing",
+                "mailing",
+                "recipientmailing"
+            ],
+            [
+                "change_recipientmailing",
+                "mailing",
+                "recipientmailing"
+            ],
+            [
+                "delete_recipientmailing",
+                "mailing",
+                "recipientmailing"
+            ],
+            [
+                "view_recipientmailing",
+                "mailing",
+                "recipientmailing"
+            ],
+            [
+                "add_message",
+                "message",
+                "message"
+            ],
+            [
+                "change_message",
+                "message",
+                "message"
+            ],
+            [
+                "delete_message",
+                "message",
+                "message"
+            ],
+            [
+                "view_message",
+                "message",
+                "message"
+            ]
+        ]
+    }
+}
+]

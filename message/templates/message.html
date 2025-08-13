@@ -25,17 +25,17 @@
                     {{ message.body }}
                 </td>
                 <td>
-                    {% if perms.message.can_delete_message or perms.message.can_update_message or message.owner.id == user.pk %}
+                    {% if perms.message.delete_message or perms.message.change_message or message.owner.id == user.pk %}
                     <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu">
-                            {% if perms.message.can_update_message or message.owner.id == user.pk %}
+                            {% if perms.message.change_message or message.owner.id == user.pk %}
                             <a class="dropdown-item btn_update_message cursor-pointer" id_message="{{ message.pk }}">
                                 <i class="icon-base bx bx-edit-alt me-1"></i> Редактировать</a>
                             {% endif %}
-                            {% if perms.message.can_update_message or message.owner.id == user.pk %}
+                            {% if perms.message.delete_message_message or message.owner.id == user.pk %}
                             <a class="dropdown-item btn_delete_message cursor-pointer" id_message="{{ message.pk }}">
                                 <i class="icon-base bx bx-trash me-1"></i> Удалить</a>
                             {% endif %}

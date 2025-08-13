@@ -17,7 +17,7 @@
                             <h6 class="mb-0">{{ user.email }}</h6>
                         </div>
                     </div>
-                    {% if perms.user.can_block_user and not user.is_superuser %}
+                    {% if perms.user.view_user and not user.is_superuser %}
                     <div class="ms-auto">
                         <a class="btn btn-outline-danger btn-icon btn_block_user" id="{{ user.pk }}">
                             <i class="icon-md icon-base bx {% if user.is_active %}bx-lock-open{% else %}bx-lock {% endif %}"></i></a>

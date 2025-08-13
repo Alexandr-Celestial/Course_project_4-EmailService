@@ -15,11 +15,11 @@ class RecipientsListView(LoginRequiredMixin, ListView):
     model = Recipient
     template_name = "recipients.html"
 
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     if user.is_superuser or user.has_perm("recipients.can_all_view_recipients"):
-    #         return Recipient.objects.all()
-    #     return Recipient.objects.filter(owner=user.pk)
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser or user.has_perm("recipients.view_recipient"):
+            return Recipient.objects.all()
+        return Recipient.objects.filter(owner=user.pk)
 
 
 class RecipientsCreateView(LoginRequiredMixin, CreateView):
@@ -31,7 +31,7 @@ class RecipientsCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         message = form.save(commit=False)
         user = self.request.user
-        if user.is_superuser or user.has_perm("recipients.can_create_recipient"):
+        if user.is_superuser or user.has_perm("recipients.add_recipient"):
             message.owner = user
             message.save()
             return super().form_valid(form)
@@ -49,7 +49,7 @@ class RecipientsDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         user = self.request.user
-        if user.is_superuser or user.has_perm("recipients.can_delete_recipient"):
+        if user.is_superuser or user.has_perm("recipients.delete_recipient"):
             return super().delete(request, *args, **kwargs)
         raise PermissionDenied
 

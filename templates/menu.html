@@ -59,7 +59,7 @@
                 <div class="text-truncate" data-i18n="email_service">Сообщения</div>
             </a>
         </li>
-        {% if user.is_superuser or perms.user.can_all_view_users %}
+        {% if user.is_superuser or perms.user.view_user %}
         <li class="menu-item">
             <a href="{% url 'user:users_services' %}" class="menu-link">
                 <div class="text-truncate" data-i18n="email_service">Пользователи</div>
