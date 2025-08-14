@@ -42,3 +42,9 @@ class Mailing(models.Model):
     class Meta:
         verbose_name = "Рассылка"
         verbose_name_plural = "Рассылки"
+
+    def output_on_display_status_ending(self):
+        for value, status in self.STATUS_CHOICES:
+            if self.status_ending == value:
+                return status
+        return "Неизвестно"
