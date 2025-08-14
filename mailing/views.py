@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 
@@ -5,7 +6,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.views.defaults import permission_denied
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 from django.views.generic.edit import CreateView
 
@@ -84,11 +84,9 @@ def sending_mailing(request, pk):
     start_sending_message(mailing)
     return redirect("mailing:mailing")
 
+@permission_required('user.can_off_mailing')
 def complete_mailing(request, pk):
     mailing: Mailing = get_object_or_404(Mailing, pk=pk)
-    user = request.user
-    if not (user.is_superuser or user.has_perm("user.can_off_mailing")):
-        raise PermissionDenied
     mailing.status_ending = Mailing.STATUS_COMPLETED
     mailing.save(update_fields=["status_ending"])
     return  redirect("mailing:mailing")
