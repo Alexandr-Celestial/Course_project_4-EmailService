@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="layout-menu-fixed layout-compact">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+
+    <title>Регистрация</title>
+    <meta name="description" content=""/>
+
+    <link href="{% static 'css/core.css' %}" rel="stylesheet">
+    <link href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/fonts/iconify-icons.css"
+          rel="stylesheet">
+    <link href="{% static 'css/background.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/menu.js' %}"></script>
+</head>
+<body>
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <!-- Register -->
+                <div class="card px-sm-6 px-0">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                    <span class="app-brand-logo demo">
+    <span class="text-primary">
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">
+        Сохранить
+    </button>
+        </form>
+    </span>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h5 class="modal-title">Изменение сообщения</h5>
+    <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form method="post" enctype="multipart/form-data" action="{% url 'message:update_message' object.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="justify-content-end d-flex">
+            <a class="btn-primary cursor-pointer mx-2" href="{% url 'message:message' %}"> Отмена</a>
+            <button class="btn-primary cursor-pointer" type="submit"> Изменить</button>
+        </div>
+    </form>
+</div>

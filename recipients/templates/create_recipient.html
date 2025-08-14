@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h5 class="modal-title">Добавление получателя</h5>
+    <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form method="post" enctype="multipart/form-data" action="{% url 'recipients:create_recipient' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="justify-content-end d-flex">
+            <a class="btn-primary cursor-pointer mx-2" href="{% url 'recipients:recipients' %}"> Отмена</a>
+            <button class="btn btn-primary cursor-pointer" type="submit"> Добавить</button>
+        </div>
+    </form>
+</div>

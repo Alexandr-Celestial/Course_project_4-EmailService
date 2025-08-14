@@ -1,0 +1,65 @@
+{% extends 'base_content.html' %}
+
+{% block content  %}
+{% load split_fullname %}
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="card-action-title mb-0">Пользователи ({{ object_list|length }})</h5>
+    </div>
+<div class="card-body">
+    <div class="table-responsive text-nowrap">
+        <ul class="list-unstyled mb-0">
+            {% for user in object_list %}
+            <li class="mb-4">
+                <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="me-2">
+                            <h6 class="mb-0">{{ user.email }}</h6>
+                        </div>
+                    </div>
+                    {% if perms.user.view_user and not user.is_superuser %}
+                    <div class="ms-auto">
+                        <a class="btn btn-outline-danger btn-icon btn_block_user" id="{{ user.pk }}">
+                            <i class="icon-md icon-base bx {% if user.is_active %}bx-lock-open{% else %}bx-lock {% endif %}"></i></a>
+                    </div>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+<script>
+
+    $(".btn_block_user").click(function(){
+        let id_u = $(this).attr("id")
+        $.ajax({
+            url: location.origin + "/user/block_user/" + id_u,
+            method: 'get',
+            dataType: 'html',
+            success: function(data){
+                location.reload()
+            },
+            error: function (jqXHR, exception) {
+                alert('Uncaught Error. ' + jqXHR.responseText);
+            }
+        });
+    })
+
+<!--    $("#btn_create_recipient").click(function(){-->
+<!--        $.ajax({-->
+<!--            url: location.origin + "{% url 'recipients:create_recipient' %}",-->
+<!--            method: 'get',-->
+<!--            dataType: 'html',-->
+<!--            success: function(data){-->
+<!--                $('#modal-cont').html(data)-->
+<!--                $('#modal-mail').modal('show')-->
+<!--            },-->
+<!--            error: function (jqXHR, exception) {-->
+<!--                alert('Uncaught Error. ' + jqXHR.responseText);-->
+<!--            }-->
+<!--        });-->
+<!--    })-->
+</script>
+{% endblock content  %}

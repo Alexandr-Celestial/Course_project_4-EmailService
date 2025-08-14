@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="layout-menu-fixed layout-compact">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+
+    <title>Сервис рассылок</title>
+    <meta name="description" content=""/>
+
+    <link href="{% static 'css/core.css' %}" rel="stylesheet">
+    <link href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/fonts/iconify-icons.css"
+          rel="stylesheet">
+    <link href="{% static 'css/background.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/menu.js' %}"></script>
+</head>
+<body>
+<!-- /Logo -->
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card px-sm-6 px-0">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a href="index.html" class="app-brand-link gap-2">
+                <span class="app-brand-logo demo">
+<span class="text-primary">
+
+  <svg
+          width="40"
+          height="34"
+          viewBox="0 0 25 42"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          aria-label="Логотип сервиса рассылок"
+          role="img"
+  >
+                    <rect
+                            x="10"
+                            y="25"
+                            width="80"
+                            height="50"
+                            rx="8"
+                            ry="8"
+                            fill="#6A4C93"
+                            stroke="#3E1F72"
+                            stroke-width="3"
+                    />
+                    <path d="M10 25 L50 55 L90 25 Z" fill="#7B5FC5"/>
+                    <path d="M95 55 L115 35 L115 45 L130 45 L130 65 L115 65 L115 75 Z" fill="#A07DFF"/>
+                  </svg>
+</span>
+</span>
+                            <span class="app-brand-text demo text-heading fw-bold">Сервис рассылок</span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-1">Добро пожаловать! 👋</h4>
+                    <p class="mb-6">Пожалуйста, авторизуйтесь</p>
+
+                    <form class="mb-6" method="post" action="{% url 'user:auth' %}">
+                        {% csrf_token %}
+                        <div class="mb-6">
+                            <label for="email" class="form-label">Эл.почта</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="email"
+                                    name="email-username"
+                                    placeholder="Введите ваш адрес эл.почты"
+                                    autofocus/>
+                        </div>
+                        <div class="mb-6 form-password-toggle">
+                            <label class="form-label" for="password">Пароль</label>
+                            <div class="input-group input-group-merge">
+                                <input
+                                        type="password"
+                                        id="password"
+                                        class="form-control"
+                                        name="password"
+                                        placeholder="Введите пароль"
+                                        aria-describedby="password"/>
+                                <span class="input-group-text cursor-pointer"></span>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <button class="btn btn-primary d-grid w-100" type="submit">Войти</button>
+                        </div>
+                    </form>
+
+                    <p class="text-center">
+                        <span>Впервые у нас?</span>
+                        <a href="{% url 'user:create_user' %}">
+                            <span>Зарегистрироваться</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- /Register -->
+        </div>
+    </div>
+</div>
+</body>
+<link href="{% static 'css/page-auth.css' %}" rel="stylesheet">
+</html>

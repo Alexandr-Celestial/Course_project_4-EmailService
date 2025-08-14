@@ -1,0 +1,66 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from message.forms import MessageForm
+from message.models import Message
+
+
+# @method_decorator(cache_page(60 * 15), name="dispatch")
+class MessageListView(LoginRequiredMixin, ListView):
+    model = Message
+    template_name = "message.html"
+
+    def get_queryset(self):
+        user = self.request.user
+        return Message.objects.filter(owner=user.pk)
+
+
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
+    model = Message
+    template_name = "delete_message.html"
+    success_url = reverse_lazy("message:message")
+
+    def delete(self, request, *args, **kwargs):
+        user = self.request.user
+        if user.is_superuser or user.has_perm("message.delete_message"):
+            return super().delete(request, *args, **kwargs)
+        raise PermissionDenied
+
+
+class MessageUpdateView(LoginRequiredMixin, UpdateView):
+    model = Message
+    form_class = MessageForm
+    template_name = "update_message.html"
+    success_url = reverse_lazy("message:message")
+
+    def form_valid(self, form):
+        message = form.save(commit=False)
+        user = self.request.user
+        if (
+            user.is_superuser
+            or user.has_perm("message.change_message")
+            or message.owner == self.request.user
+        ):
+            message.save()
+            return super().form_valid(form)
+        raise PermissionDenied
+
+
+class MessageCreateView(LoginRequiredMixin, CreateView):
+    model = Message
+    form_class = MessageForm
+    template_name = "create_message.html"
+    success_url = reverse_lazy("message:message")
+
+    def form_valid(self, form):
+        message = form.save(commit=False)
+        user = self.request.user
+        if user.has_perm("message.add_message"):
+            message.owner = self.request.user
+            message.save()
+            return super().form_valid(form)
+        raise PermissionDenied

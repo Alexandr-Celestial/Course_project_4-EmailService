@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h5 class="modal-title">Создание рассылки</h5>
+    <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form method="post" action="{% url 'mailing:create_mailing' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="justify-content-end d-flex">
+            <a class="btn-primary cursor-pointer mx-2" href="{% url 'mailing:mailing' %}"> Отмена</a>
+            <button class="btn btn-primary cursor-pointer" id="btn_create_mailing" type="submit"> Добавить</button>
+        </div>
+    </form>
+</div>

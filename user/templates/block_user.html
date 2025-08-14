@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h5 class="modal-title">Блокировка пользователя</h5>
+    <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form method="post" enctype="multipart/form-data" action="{% url 'user:block_user' object.pk %}">
+        {% csrf_token %}
+        <div class="justify-content-end d-flex">
+            <a class="btn-primary cursor-pointer mx-2" href="{% url 'user:users_services' %}"> Отмена</a>
+            <button class="btn btn-danger cursor-pointer" id="btn_create_message" type="submit"> Удалить</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,132 @@
+{% extends 'base_content.html' %}
+
+{% block content  %}
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="card-action-title mb-0">Рассылки ({{ object_list|length }})</h5>
+        <button type="button" class="btn btn-primary cursor-pointer" id="btn_create_mailing">Добавить рассылку</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>№ Рассылки</th>
+                    <th>Тема</th>
+                    <!--                <th>Сообщение</th>-->
+                    <th>Получатели</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                {% for mailing in object_list %}
+                <tr>
+                    <td>
+                        {{ mailing.pk }}
+                    </td>
+                    <td>{{ mailing.message.theme }}</td>
+                    <!--                <td>-->
+                    <!--                    {{ mailing.message.body }}-->
+                    <!--                </td>-->
+                    <td>
+                        {{ mailing.recipients.all|length }}
+                    </td>
+                    <td>
+
+                        <span class="badge bg-label-{% if mailing.status_ending == 'created' %}primary{% else %}success {% endif %}me-1">
+                        {{mailing.output_on_display_status_ending}}</span>
+
+                    </td>
+                    <td>
+                        {% if perms.mailing.can_delete_mailing or perms.mailing.can_update_mailing or mailing.owner.id == user.pk %}
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                {% if perms.mailing.add_mailing or mailing.owner.id == user.pk %}
+                                <a class="dropdown-item cursor-pointer"
+                                   href="{% url 'mailing:sending_mailing' mailing.pk %}"><i
+                                        class="icon-base bx bx-trash me-1"></i> Отправить</a>
+                                {% endif %}
+                                {% if perms.mailing.change_mailing or mailing.owner.id == user.pk %}
+                                <a class="dropdown-item btn_update_mailing cursor-pointer"
+                                   id_mailing="{{ mailing.pk }}"><i
+                                        class="icon-base bx bx-edit-alt me-1"></i> Редактировать</a>
+                                {% endif %}
+                                {% if perms.mailing.delete_mailing or mailing.owner.id == user.pk %}
+                                <a class="dropdown-item btn_delete_mailing cursor-pointer"
+                                   id_mailing="{{ mailing.pk }}"><i
+                                        class="icon-base bx bx-trash me-1"></i> Удалить</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if perms.user.can_off_mailing and mailing.status_ending != 'completed' %}
+                        <form method="post" action="{% url 'mailing:complete_mailing' mailing.pk %}"
+                              style="display:inline;">
+                                {% csrf_token %}
+                            <button type="submit" class="dropdown-item btn-warning btn_finish_mailing cursor-pointer">
+                                Завершить
+                            </button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(".btn_update_mailing").click(function(){
+        let id_mailing = $(this).attr("id_mailing")
+        $.ajax({
+            url: location.origin + "/mailing/update_mailing/" + id_mailing,
+            method: 'get',
+            dataType: 'html',
+            success: function(data){
+                $('#modal-cont').html(data)
+                $('#modal-mail').modal('show')
+            },
+            error: function (jqXHR, exception) {
+                alert('Uncaught Error. ' + jqXHR.responseText);
+            }
+        });
+    })
+
+    $(".btn_delete_mailing").click(function(){
+        let id_mailing = $(this).attr("id_mailing")
+        $.ajax({
+            url: location.origin + "/mailing/delete_mailing/" + id_mailing,
+            method: 'get',
+            dataType: 'html',
+            success: function(data){
+                $('#modal-cont').html(data)
+                $('#modal-mail').modal('show')
+            },
+            error: function (jqXHR, exception) {
+                alert('Uncaught Error. ' + jqXHR.responseText);
+            }
+        });
+    })
+
+    $("#btn_create_mailing").click(function(){
+        $.ajax({
+            url: location.origin + "{% url 'mailing:create_mailing' %}",
+            method: 'get',
+            dataType: 'html',
+            success: function(data){
+                $('#modal-cont').html(data)
+                $('#modal-mail').modal('show')
+            },
+            error: function (jqXHR, exception) {
+                alert('Uncaught Error. ' + jqXHR.responseText);
+            }
+        });
+    })
+</script>
+{% endblock content  %}

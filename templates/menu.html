@@ -1,0 +1,85 @@
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                  <!-- Новый логотип -->
+                  <svg
+                      width="40"
+                      height="34"
+                      viewBox="0 0 120 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      aria-label="Логотип сервиса рассылок"
+                      role="img"
+                  >
+                    <rect
+                      x="10"
+                      y="25"
+                      width="80"
+                      height="50"
+                      rx="8"
+                      ry="8"
+                      fill="#6A4C93"
+                      stroke="#3E1F72"
+                      stroke-width="3"
+                    />
+                    <path d="M10 25 L50 55 L90 25 Z" fill="#7B5FC5" />
+                    <path d="M95 55 L115 35 L115 45 L130 45 L130 65 L115 65 L115 75 Z" fill="#A07DFF" />
+                  </svg>
+                </span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Сервис рассылок</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+            <i class="bx bx-chevron-left d-block d-xl-none align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-divider mt-0"></div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Apps & Pages -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Получатели и рассылки</span>
+        </li>
+        <li class="menu-item">
+            <a href="{% url 'recipients:recipients' %}" class="menu-link">
+                <div class="text-truncate" data-i18n="users">Получатели</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{% url 'mailing:mailing' %}" class="menu-link">
+                <div class="text-truncate" data-i18n="email_service">Рассылки</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{% url 'message:message' %}" class="menu-link">
+                <div class="text-truncate" data-i18n="email_service">Сообщения</div>
+            </a>
+        </li>
+        {% if user.is_superuser or perms.user.view_user %}
+        <li class="menu-item">
+            <a href="{% url 'user:users_services' %}" class="menu-link">
+                <div class="text-truncate" data-i18n="email_service">Пользователи</div>
+            </a>
+        </li>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Авторизация</span>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <div class="text-truncate">Войти</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
+                <div class="text-truncate">Зарегистрироваться</div>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</aside>

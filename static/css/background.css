@@ -1,0 +1,7 @@
+body {
+    background-image: url('/static/img/background.jpg');
+    background-size: cover;            /* Картинка покрывает весь экран */
+    background-repeat: no-repeat;      /* Картинка не повторяется */
+    background-attachment: fixed;      /* Фон закреплен */
+    background-position: center center;/* Центрирование */
+}
